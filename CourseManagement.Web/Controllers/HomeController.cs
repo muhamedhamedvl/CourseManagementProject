@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using CourseManagement.Web.Models;
+using CourseManagement.DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CourseManagement.Web.Controllers
