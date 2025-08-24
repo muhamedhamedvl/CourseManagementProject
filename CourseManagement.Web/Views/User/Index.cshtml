@@ -1,4 +1,4 @@
-﻿@model IEnumerable<User>
+﻿@model CourseManagement.DAL.Helpers.Pagenation.PagedResult<CourseManagement.DAL.Models.Users.User>
 
 @{
     ViewData["Title"] = "Users";
@@ -41,17 +41,53 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (var user in Model)
-    {
-        <tr>
-            <td>@user.Name</td>
-            <td>@user.Email</td>
-            <td>@user.Role</td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm btn-warning">Edit</a>
-                <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-sm btn-danger">Delete</a>
-            </td>
-        </tr>
-    }
+        @foreach (var user in Model.Items)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.Role</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<nav>
+    <ul class="pagination">
+        <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+            <a class="page-link"
+               asp-action="Index"
+               asp-route-page="@(Model.PageNumber - 1)"
+               asp-route-search="@Context.Request.Query["search"]"
+               asp-route-role="@Context.Request.Query["role"]">
+                Previous
+            </a>
+        </li>
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                <a class="page-link" asp-action="Index"
+                   asp-route-page="@i"
+                   asp-route-search="@Context.Request.Query["search"]"
+                   asp-route-role="@Context.Request.Query["role"]">
+                    @i
+                </a>
+            </li>
+        }
+
+        <li class="page-item @(Model.PageNumber == Model.TotalPages ? "disabled" : "")">
+            <a class="page-link"
+               asp-action="Index"
+               asp-route-page="@(Model.PageNumber + 1)"
+               asp-route-search="@Context.Request.Query["search"]"
+               asp-route-role="@Context.Request.Query["role"]">
+                Next
+            </a>
+        </li>
+    </ul>
+</nav>
