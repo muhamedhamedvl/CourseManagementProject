@@ -51,7 +51,7 @@
 - Shared Partial Views + Bootstrap Alerts/Notifications.
 
 ### Order:
-- **must start first because** 
+- **must start first** 
 
 ---
 
