@@ -72,7 +72,7 @@
 # Workflow
 
 1. **Mahmoud El-Daly** starts first (Infrastructure).  
-2. **Mohamed Hamed (me)** can start immediately in parallel (Users).  
+2. **Mohamed Hamed** can start immediately in parallel (Users).  
 3. **Fatma Mohamed** starts after Infrastructure is ready.  
 4. **Hagar Mohamed** starts after Courses are done.  
 5. **Mahmoud Hegazy** starts last, after Sessions + Users are finished.  
