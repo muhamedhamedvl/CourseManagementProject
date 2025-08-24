@@ -20,7 +20,7 @@ namespace CourseManagement.DAL.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync(string search, string role, int page, int pageSize)
+        public async Task<PagedResult<User>> GetAllAsync(string search, string role, int page, int pageSize)
         {
             var query = _context.Users.AsQueryable();
 
@@ -28,14 +28,23 @@ namespace CourseManagement.DAL.Repositories
                 query = query.Where(u => u.Name.Contains(search));
 
             if (!string.IsNullOrEmpty(role) && Enum.TryParse<UserRole>(role, out var parsedRole))
-            {
                 query = query.Where(u => u.Role == parsedRole);
-            }
 
-            return await query
+            var totalCount = await query.CountAsync();
+
+            var items = await query
+                .OrderBy(u => u.Name)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+
+            return new PagedResult<User>
+            {
+                Items = items,
+                PageNumber = page,
+                PageSize = pageSize,
+                TotalCount = totalCount
+            };
         }
 
         public async Task<User> GetByIdAsync(int id) =>

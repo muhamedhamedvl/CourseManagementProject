@@ -10,7 +10,7 @@ namespace CourseManagement.DAL.Interfaces
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User>> GetAllAsync(string search, string role, int page, int pageSize);
+        Task<PagedResult<User>> GetAllAsync(string search, string role, int page, int pageSize);
         Task<User> GetByIdAsync(int id);
         Task AddAsync(User user);
         Task UpdateAsync(User user);
