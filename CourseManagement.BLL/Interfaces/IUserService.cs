@@ -1,4 +1,5 @@
-﻿using CourseManagement.DAL.Models.Users;
+﻿using CourseManagement.DAL.Helpers.Pagenation;
+using CourseManagement.DAL.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace CourseManagement.BLL.Interfaces
 {
     public interface IUserService
     {
-        Task<IEnumerable<User>> GetAllAsync(string search, string role, int page, int pageSize);
+        Task<PagedResult<User>> GetAllAsync(string search, string role, int page, int pageSize);
         Task<User> GetByIdAsync(int id);
         Task AddAsync(User user);
         Task UpdateAsync(User user);

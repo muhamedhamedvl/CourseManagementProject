@@ -1,4 +1,5 @@
 ﻿using CourseManagement.BLL.Interfaces;
+using CourseManagement.DAL.Helpers.Pagenation;
 using CourseManagement.DAL.Interfaces;
 using CourseManagement.DAL.Models.Users;
 using System;
@@ -18,7 +19,7 @@ namespace CourseManagement.BLL.Services
             _userRepository = userRepository;
         }
 
-        public Task<IEnumerable<User>> GetAllAsync(string search, string role, int page, int pageSize) =>
+        public Task<PagedResult<User>> GetAllAsync(string search, string role, int page, int pageSize) =>
             _userRepository.GetAllAsync(search, role, page, pageSize);
 
         public Task<User> GetByIdAsync(int id) =>
