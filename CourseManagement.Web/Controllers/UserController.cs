@@ -13,11 +13,12 @@ namespace CourseManagement.Web.Controllers
             _userService = userService;
         }
 
-        public async Task<IActionResult> Index(string search, string role, int page = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(string search, string role, int page = 1, int pageSize = 2)
         {
             var users = await _userService.GetAllAsync(search, role, page, pageSize);
             return View(users);
         }
+
 
         public IActionResult Create() => View();
 
