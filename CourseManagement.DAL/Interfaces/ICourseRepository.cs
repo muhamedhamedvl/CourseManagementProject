@@ -1,19 +1,20 @@
-﻿
-using DAL.Entitys;
+using CourseManagement.DAL.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-namespace DAL.Interfaces
+namespace CourseManagement.DAL.Interfaces
 {
     public interface ICourseRepository
     {
-        Task<IEnumerable<Course>> GetAllAsync();
+        Task<IEnumerable<Course>> GetAllAsync(string? search, string? category, int page, int pageSize);
+        Task<int> CountAsync(string? search, string? category);
         Task<Course?> GetByIdAsync(int id);
-        Task AddAsync(Course entity);
-        void Update(Course entity);
-        void Remove(Course entity);
-        Task<bool> ExistsByNameAsync(string name, int? excludeId = null);
-        Task<int> SaveAsync(); // Save() for Course
-        int GetCount(string? searchNane = null);
-        IEnumerable<Course> GetPage(int page, int pageSize, string? SearchName = null);
+        Task AddAsync(Course course);
+        Task UpdateAsync(Course course);
+        Task DeleteAsync(int id);
+        Task<bool> IsNameUniqueAsync(string name, int? excludeId = null);
     }
 }
