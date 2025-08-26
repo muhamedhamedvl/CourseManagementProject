@@ -14,5 +14,13 @@ namespace CourseManagement.DAL.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
+         public DbSet<Course> Courses { get; set; }
+ public DbSet<Instructor> Instructors { get; set; }
+
+ protected override void OnModelCreating(ModelBuilder modelBuilder)
+ {
+     modelBuilder.Entity<Course>()
+         .HasIndex(c => c.Name).IsUnique();
+ }
     }
 }
