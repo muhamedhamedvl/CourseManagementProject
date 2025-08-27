@@ -1,5 +1,5 @@
 ﻿using CourseManagement.DAL.Data;
-using CourseManagement.DAL.Enums;
+using CourseManagement.DAL.Entities;
 using CourseManagement.DAL.Helpers.Pagenation;
 using CourseManagement.DAL.Interfaces;
 using CourseManagement.DAL.Models.Users;
@@ -48,7 +48,7 @@ namespace CourseManagement.DAL.Repositories
         }
 
         public async Task<User> GetByIdAsync(int id) =>
-            await _context.Users.FindAsync(id);
+            await _context.sers.FindAsync(id);
 
         public async Task AddAsync(User user)
         {
@@ -58,7 +58,7 @@ namespace CourseManagement.DAL.Repositories
 
         public async Task UpdateAsync(User user)
         {
-            _context.Users.Update(user);
+            Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<AppUser> entityEntry = _context.Users.Update(ِuser);
             await _context.SaveChangesAsync();
         }
 
