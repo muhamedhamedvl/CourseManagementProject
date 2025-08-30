@@ -16,7 +16,7 @@ namespace CourseManagement.BLL.Interfaces
         Task UpdateCourseAsync(Course course);
         Task DeleteCourseAsync(int id);
         Task<bool> IsCourseNameUniqueAsync(string name, int? excludeId = null);
-    
+
 
     }
 }
